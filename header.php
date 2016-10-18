@@ -29,6 +29,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-57-precomposed.png">
+
     <?php wp_head(); ?>
 
 </head><!--/head-->
@@ -59,13 +60,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <a class="navbar-brand" href="index.html">
-                    	<h1><img src="<?php bloginfo('template_url'); ?>/images/logo.png" alt="logo"></h1>
+                    <?php if ( get_header_image() ) : ?>
+                    <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    	<h1><img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" /></h1>
                     </a>
-                    
+                    <?php endif; ?>
                 </div>
-                <div class="collapse navbar-collapse">
+<!--                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="index.html">Home</a></li>
                         <li class="dropdown"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
@@ -110,7 +111,21 @@
                             <input type="text" class="search-form" autocomplete="off" placeholder="Search">
                         </div>
                     </form>
-                </div>
+                </div> -->
+                <?php
+                    $args = array(
+                        'menu'              => 'primary',
+                        'theme_location'    => 'primary',
+                        'depth'             => 2,
+                        'container'         => 'div',
+                        'container_class'   => 'collapse navbar-collapse',
+                        'container_id'      => 'triangle',
+                        'menu_class'        => 'nav navbar-nav navbar-right',
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    );
+                    wp_nav_menu( $args);
+                ?>
             </div>
         </div>
     </header>
