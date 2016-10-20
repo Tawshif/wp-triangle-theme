@@ -269,12 +269,12 @@
      *
      */
 
-    Redux::setSection($opt_name, array(
-        'title' => __( 'Media Uploads', 'redux-framework-demo' ),
-        'id'    => 'media',
-        'desc'  => __( '', 'redux-framework-demo' ),
-        'icon'  => 'el el-picture'
-    ) );
+    Redux::setSection( $opt_name,
+        array(
+            'title' =>'header options',
+            'type' => ''
+        )
+    );
 
 
 
