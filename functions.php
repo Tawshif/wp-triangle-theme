@@ -10,7 +10,14 @@
 /*
 *	Register Custom Navigation Walker
 */
+
+if (!class_exists("RedusFrameworkPlugin")) {
+	require_once (get_template_directory()."/libs/redux-framework-master/redux-framework.php");
+	require_once (get_template_directory()."/libs/redux-framework-master/sample/triangle-config.php");
+}
+
 require_once('wp_bootstrap_navwalker.php');
+
 
 
 if ( ! function_exists('theme_setup') ) :
@@ -75,17 +82,20 @@ add_action('init', function(){
 
 function theme_files() {
 	$styles = [
-		['id' => 'style', 'location' => 'stylesheet', 'dep' => false],
-		['id' => 'bootstrap', 'location' => 'bootstrap.min.css', 'dep' => false],
-		['id' => 'font_awesome', 'location' => 'font-awesome.min.css', 'dep' => false],
-		['id' => 'animate', 'location' => 'animate.min.css', 'dep' => false],
-		['id' => 'lightbox', 'location' => 'lightbox.css', 'dep' => false],
-		['id' => 'main', 'location' => 'main.css', 'dep' => false],
-		['id' => 'responsive', 'location' => 'responsive.css', 'dep' => false]
+		['handle' => 'style', 'src' => '../style.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'bootstrap', 'src' => 'bootstrap.min.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'font_awesome', 'src' => 'font-awesome.min.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'animate', 'src' => 'animate.min.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'lightbox', 'src' => 'lightbox.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'main', 'src' => 'main.css', 'deps' => false, 'media'=>"all"],
+		['handle' => 'responsive', 'src' => 'responsive.css', 'deps' => false, 'media'=>"all"]
 	];
-	for ($style = 0; $style < sizeof($styles); $style++) {
-		wp_enqueue_style($styles[$style]['id'], get_template_directory_uri() . '/css/' . $styles[$style]['location'], $styles[$style]['dep']);
+	for ($i = 0; $i < sizeof($styles); $i++) {
+
+		wp_enqueue_style($styles[$i]['handle'], get_template_directory_uri() . '/css/' . $styles[$i]['src'], $styles[$i]['deps'], $styles[$i]['media'] );
+	
 	}
+
 	$scripts = [
 		['handle' => 'bootstrap', 'src'=>'bootstrap.min.js','dep'=> array( 'jquery' ),'var'=> false,'in_foot'=> true],
 		['handle' => 'lightbox', 'src'=>'lightbox.min.js','dep'=> array( 'jquery' ),'var'=> false,'in_foot'=> true],
@@ -93,11 +103,12 @@ function theme_files() {
 		['handle' => 'main', 'src'=>'main.js', 'dep'=>array( 'jquery' ), 'var'=>false, 'in_foot'=>true]
 	];
 
-	for ($script=0; $script < sizeof($scripts); $script++) { 
-		wp_enqueue_script( $scripts[$script]['handle'], get_template_directory_uri() . '/js/' . $scripts[$script]['src'], $scripts[$script]['dep'], $scripts[$script]['ver'], $scripts[$script]['in_foot'] );	
+	for ($i=0; $i < sizeof($scripts); $i++) {
+
+		wp_enqueue_script( $scripts[$i]['handle'], get_template_directory_uri() . '/js/' . $scripts[$i]['src'], $scripts[$i]['dep'], $scripts[$i]['ver'], $scripts[$i]['in_foot'] );	
+	
 	}
 }
-
 add_action( 'wp_enqueue_scripts', 'theme_files' );
 
 register_nav_menus( array(
@@ -112,3 +123,6 @@ $args = array(
 	'uploads'       => true,
 );
 add_theme_support( 'custom-header', $args );
+
+
+ 

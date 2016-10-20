@@ -34,6 +34,16 @@ get_header(); ?>
     </section>
     <!--/#home-slider-->
 
+<pre>
+<?php 
+	$yellow = $triangle["opt-color-title"];
+	echo "<h1 style='color: $yellow;'> Heading for color </h1>";
+
+// global $triangle;  
+// var_dump($triangle["opt-radio"]);
+
+?>
+	</pre>
     <section id="services">
         <div class="container">
             <div class="row">

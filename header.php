@@ -47,6 +47,8 @@
                             <li><a href=""><i class="fa fa-dribbble"></i></a></li>
                             <li><a href=""><i class="fa fa-linkedin"></i></a></li>
                         </ul>
+
+                    
                     </div> 
                 </div>
              </div>
@@ -66,7 +68,7 @@
                     </a>
                     <?php endif; ?>
                 </div>
-<!--                 <div class="collapse navbar-collapse">
+<!--            <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="index.html">Home</a></li>
                         <li class="dropdown"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
