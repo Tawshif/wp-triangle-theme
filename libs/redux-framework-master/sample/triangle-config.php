@@ -141,12 +141,12 @@
         // If you prefer not to use the CDN for Select2, Ace Editor, and others, you may download the Redux Vendor Support plugin yourself and run locally or embed it in your code.
 
         // HINTS
-        'hints'                => array(
+            'hints'         => array(
             'icon'          => 'el el-question-sign',
             'icon_position' => 'right',
-            'icon_color'    => 'lightgray',
-            'icon_size'     => 'normal',
-            'tip_style'     => array(
+            'icon_color'  => 'lightgray',
+            'icon_size'   => 'normal',
+            'tip_style'   => array(
                 'color'   => 'red',
                 'shadow'  => true,
                 'rounded' => false,
