@@ -64,16 +64,18 @@
                         </form>
                     </div>
                 </div>
+                <!-- Footer bottom rights -->
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">
-                        <p>&copy; Your Company 2014. All Rights Reserved.</p>
-                        <p>Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
+                        <?php
+                            global $triangle;
+                            echo $triangle['copy-txt']; 
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!--/#footer-->
    	<?php wp_footer(); ?> 
 </body>
 </html>

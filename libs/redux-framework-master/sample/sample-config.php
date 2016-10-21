@@ -234,46 +234,12 @@
      * ---> END ARGUMENTS
      */
 
-
     /*
-     * ---> START HELP TABS
-     */
-
-    $tabs = array(
-        array(
-            'id'      => 'redux-help-tab-1',
-            'title'   => __( 'Theme Information 1', 'redux-framework-demo' ),
-            'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo' )
-        ),
-        array(
-            'id'      => 'redux-help-tab-2',
-            'title'   => __( 'Theme Information 2', 'redux-framework-demo' ),
-            'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo' )
-        )
-    );
-    Redux::setHelpTab( $opt_name, $tabs );
-
-    // Set the help sidebar
-    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'redux-framework-demo' );
-    Redux::setHelpSidebar( $opt_name, $content );
-
-
-    /*
-     * <--- END HELP TABS
-     */
-
-
-    /*
-     *
      * ---> START SECTIONS
-     *
      */
 
     /*
-
-        As of Redux 3.5+, there is an extensive API. This API can be used in a mix/match mode allowing for
-
-
+     *  As of Redux 3.5+, there is an extensive API. This API can be used in a mix/match mode allowing for
      */
 
     // -> START Basic Fields

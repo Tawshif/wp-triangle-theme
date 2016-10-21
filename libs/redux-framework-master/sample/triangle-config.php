@@ -269,26 +269,52 @@
      *
      */
 
-    Redux::setSection( $opt_name,
-        array(
-            'title' =>'header options',
-            'type' => ''
+    Redux::setSection( $opt_name, array(
+
+            'id' => 'header',
+            'title' => __('Header Options', 'Triangle Theme'),
+            'icon' => 'el el-compass',
+            'fields' => array(  
+                array(
+                    'title'=>__('Logo Uploader', 'Triangle Theme'),
+                    'subtitle'=>__('Upload Logo', 'Triangle Theme'),
+                    'desc'=>__('Logo upload korbe ki na bol', 'Triangle Theme'),
+                    'type'=>'text',
+                    'id'=>'logo-uploader'
+                )
+                
+            )
         )
     );
 
+
+    Redux::setSection( $opt_name, array(
+            'id' => 'tr-footer',
+            'title' => __('Footer', 'Triangle Theme'),
+            'icon' => 'el el-icon-cogs',
+            'fields' => array(  
+                array(
+                    'id'       => 'copy-txt',
+                    'type'     => 'editor',
+                    'title'    => __( 'Text Option with Data Attributes', 'Triangle Theme' ),   
+                )
+            )
+        )
+    );
 
 
     if ( file_exists( dirname( __FILE__ ) . '/../README.md' ) ) {
         $section = array(
             'icon'   => 'el el-list-alt',
-            'title'  => __( 'Documentation', 'redux-framework-demo' ),
+            'title'  => __( 'Documentation'),
             'fields' => array(
                 array(
                     'id'       => '17',
                     'type'     => 'raw',
                     'markdown' => true,
                     'content_path' => dirname( __FILE__ ) . '/../README.md', // FULL PATH, not relative please
-                    //'content' => 'Raw content here',
+                    'content' => 'Raw content here'
+                    
                 ),
             ),
         );
@@ -312,7 +338,7 @@
     */
 
     // If Redux is running as a plugin, this will remove the demo notice and links
-    //add_action( 'redux/loaded', 'remove_demo' );
+    // add_action( 'redux/loaded', 'remove_demo' );
 
     // Function to test the compiler hook and demo CSS output.
     // Above 10 is a priority, but 2 in necessary to include the dynamically generated CSS to be sent to the function.
@@ -322,10 +348,10 @@
     //add_filter('redux/options/' . $opt_name . '/args', 'change_arguments' );
 
     // Change the default value of a field after it's been set, but before it's been useds
-    //add_filter('redux/options/' . $opt_name . '/defaults', 'change_defaults' );
+    // add_filter('redux/options/' . $opt_name . '/defaults', 'change_defaults' );
 
     // Dynamically add a section. Can be also used to modify sections/fields
-    //add_filter('redux/options/' . $opt_name . '/sections', 'dynamic_section');
+    // add_filter('redux/options/' . $opt_name . '/sections', 'dynamic_section');
 
     /**
      * This is a test function that will let you see when the compiler hook occurs.
