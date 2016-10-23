@@ -287,7 +287,54 @@
         )
     );
 
+    /**
+    *
+    * General options
+    *
+    **/
+    
+    Redux::setSection($opt_name, array(
+        'icon'      => 'el-icon-tasks',
+        'title'     => __('General options', 'Triangle theme'),
+        'fields'   => array(
+            array(
+                'id'            => 'scheme',
+                'type'          => 'background',
+                'title'         => __('Color Schemes'),
+                'subtitle'      => __('Save and load color schemes'),
+                'output'        => true,
+                'compiler'      => false
+                )
+            ),   
+        )
+    );
 
+    /**
+    *
+    * Styling options
+    *
+    **/
+    
+    Redux::setSection($opt_name, array(
+        'icon'      => 'el-icon-tint',
+        'title'     => __('Styling options', 'Triangle theme'),
+        'fields'    => array(
+            array(
+                'title'    =>__('Custom CSS', 'Triangle theme') ,
+                'subtitle' => __('Add your own css code','Triangle theme'),
+                'id'       => 'custom-css',
+                'type'     => 'ace_editor',
+                'mode'     => 'css',
+                'theme'    => 'monokai',
+                'desc'     => 'Possible modes can be found at <a href="' . 'http://' . 'ace.c9.io" target="_blank">' . 'http://' . 'ace.c9.io/</a>.'
+                )
+            )
+        )
+    );
+
+    /**
+     * Footer section
+     */
     Redux::setSection( $opt_name, array(
             'id' => 'tr-footer',
             'title' => __('Footer', 'Triangle Theme'),
