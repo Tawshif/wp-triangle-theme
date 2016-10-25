@@ -11,7 +11,11 @@
  *
  * @package 
  */
+
+ global $triangle;
+
 ?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> >
 <head>
@@ -24,14 +28,13 @@
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?php bloginfo('template_url'); ?>/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="<?php echo  $triangle['logo-uploader']['url']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo  $triangle['logo-uploader']['url']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo  $triangle['logo-uploader']['url']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo  $triangle['logo-uploader']['url']; ?>">
+    <link rel="apple-touch-icon-precomposed" href="<?php echo  $triangle['logo-uploader']['url']; ?>">
     <style>
     <?php 
-        global $triangle;
         echo $triangle['custom-css']; 
     ?>
     </style>
@@ -46,14 +49,8 @@
                 <div class="col-sm-12 overflow">
                    <div class="social-icons pull-right">
                         <ul class="nav nav-pills">
-                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-
-                    
+                            <?= social_icons(); ?>
+                        </ul>                    
                     </div> 
                 </div>
              </div>

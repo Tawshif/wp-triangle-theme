@@ -268,21 +268,75 @@
      * ---> START SECTIONS
      *
      */
-
+    
+    /**
+    *
+    * social options
+    *
+    **/
+    
     Redux::setSection( $opt_name, array(
+        'id'        => 'socials',
+        'icon'      => 'el el-slideshare',
+        'title'     => __('Social Links', 'Triangle Theme'),
+        'icon'      => 'fa fa-bell-o',
+        'fields'    => array(
+            array(
+                'id'    =>  'facebook',
+                'title' =>  __('Facebook Profile', 'Triangle theme'),
+                'type'  => 'text'
+                ),
+            array(
+                'id'    =>  'twitter',
+                'title' =>  __('Twitar Profile', 'Triangle theme'),
+                'type'  => 'text'
+                ),
+            array(
+                'id'    =>  'google-plus',
+                'title' =>  __('Google Plus Profile', 'Triangle theme'),
+                'type'  => 'text'
+                ),
+            array(
+                'id'    =>  'dribbble',
+                'title' =>  __('Drible Profile', 'Triangle theme'),
+                'type'  => 'text'
+                ),
+            array(
+                'id'    =>  'linkedin',
+                'title' =>  __('Linked In Profile', 'Triangle theme'),
+                'type'  => 'text'
+                ),
 
-            'id' => 'header',
-            'title' => __('Header Options', 'Triangle Theme'),
-            'icon' => 'el el-compass',
+            array(
+                'id'    =>  'pinterest',
+                'title' =>  __('Linked In Profile', 'Triangle theme'),
+                'type'  => 'text'
+                )
+
+            )
+        )
+    );
+
+    /**
+    *
+    * Header Options
+    *
+    **/
+    Redux::setSection( $opt_name, array(
+            'id' => 'fevIcon',
+            'title' => __('Fevicon', 'Triangle Theme'),
+            'icon' => 'fa fa-share-alt',
             'fields' => array(  
                 array(
-                    'title'=>__('Logo Uploader', 'Triangle Theme'),
+                    'title'=>__('Upload Fevicon', 'Triangle Theme'),
                     'subtitle'=>__('Upload Logo', 'Triangle Theme'),
                     'desc'=>__('Logo upload korbe ki na bol', 'Triangle Theme'),
-                    'type'=>'text',
-                    'id'=>'logo-uploader'
+                    'type'=>'media',
+                    'id'=>'logo-uploader',
+                    'default'  => array(
+                        'url'=>'http://s.wordpress.org/style/images/codeispoetry.png'
+                    )
                 )
-                
             )
         )
     );
@@ -314,7 +368,6 @@
     * Styling options
     *
     **/
-    
     Redux::setSection($opt_name, array(
         'icon'      => 'el-icon-tint',
         'title'     => __('Styling options', 'Triangle theme'),

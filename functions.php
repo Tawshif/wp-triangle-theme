@@ -111,6 +111,16 @@ function theme_files() {
 }
 add_action( 'wp_enqueue_scripts', 'theme_files' );
 
+function admin_files(){
+		$styles = [
+		['handle' => 'font_awesome', 'src' => 'font-awesome.min.css', 'deps' => false, 'media'=>"all"]
+	];
+	for ($i = 0; $i < sizeof($styles); $i++) {
+		wp_enqueue_style($styles[$i]['handle'], get_template_directory_uri() . '/css/' . $styles[$i]['src'], $styles[$i]['deps'], $styles[$i]['media'] );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'admin_files' );
+
 register_nav_menus( array(
     'primary' => __( 'Primary', 'triangle_menu' ),
 ) );
@@ -125,4 +135,15 @@ $args = array(
 add_theme_support( 'custom-header', $args );
 
 
- 
+function social_icons(){
+	global $triangle;
+	$social_options = [ 'facebook', 'twitter', 'google-plus', 'dribbble', 'linkedin', 'pinterest' ];
+	$markup = '';
+	foreach($social_options as $icon) :
+		if(!empty($triangle[$icon])) {
+			$markup .= '<li><a href="' . $triangle[$icon] . '"><i class="fa fa-'. $icon .'"></i></a></li>';
+		}
+	endforeach;
+	return $markup;
+
+}
