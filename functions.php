@@ -18,10 +18,10 @@ if (!class_exists("RedusFrameworkPlugin")) {
 
 require_once('wp_bootstrap_navwalker.php');
 
+require('shortcodes.php');
 
 
 if ( ! function_exists('theme_setup') ) :
-
 function theme_setup()
 {
 	/*
@@ -31,7 +31,7 @@ function theme_setup()
 	* provide it for us.
 	*/
 
-	add_theme_support( 'title-tag' );
+	add_theme_support( 'title-tag');
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -39,7 +39,11 @@ function theme_setup()
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 
-	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails');
+
+
+	add_theme_support('custom-background');
+
 
 	/*
 	 *	Enable support for custom header
@@ -61,14 +65,13 @@ function theme_setup()
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 
 }
-
 endif;
 
 /** Tell WordPress to run theme_setup() when the 'after_setup_theme' hook is run. */
+
 add_action( 'after_setup_theme', 'theme_setup' );
 
 // add_action('after_setup_theme', 'remove_admin_bar');
-
 // function remove_admin_bar() 
 // {
 // 	if (!current_user_can('administrator') && !is_admin()) {
@@ -112,7 +115,7 @@ function theme_files() {
 add_action( 'wp_enqueue_scripts', 'theme_files' );
 
 function admin_files(){
-		$styles = [
+	$styles = [
 		['handle' => 'font_awesome', 'src' => 'font-awesome.min.css', 'deps' => false, 'media'=>"all"]
 	];
 	for ($i = 0; $i < sizeof($styles); $i++) {
@@ -134,7 +137,6 @@ $args = array(
 );
 add_theme_support( 'custom-header', $args );
 
-
 function social_icons(){
 	global $triangle;
 	$social_options = [ 'facebook', 'twitter', 'google-plus', 'dribbble', 'linkedin', 'pinterest' ];
@@ -145,5 +147,6 @@ function social_icons(){
 		}
 	endforeach;
 	return $markup;
-
 }
+
+register_post_type( $post_type, $args );

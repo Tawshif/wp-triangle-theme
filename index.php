@@ -22,6 +22,20 @@ get_header(); ?>
         <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>
     </section>
     <!--/#home-slider-->
+	
+<!-- 	<section id="services">
+        <div class="container">
+            <div class="row">
+            	<?php 	
+
+            		$args = array(
+
+            		);
+            		$query = new WP_Query( $args );
+            	 ?>
+            </div>
+        </div>
+    </section> -->
 
     <section id="services">
         <div class="container">
