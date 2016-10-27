@@ -21,56 +21,42 @@ get_header(); ?>
         </div>
         <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>
     </section>
-    <!--/#home-slider-->
-	
-<!-- 	<section id="services">
-        <div class="container">
-            <div class="row">
-            	<?php 	
-
-            		$args = array(
-
-            		);
-            		$query = new WP_Query( $args );
-            	 ?>
-            </div>
-        </div>
-    </section> -->
+	<?php 	
+		$args = array(
+			'post_status' => array('publish'),
+	        'post_type' => 'services',
+	        'orderby'=> 'post',
+	        'order'=> 'ASC',
+	        'posts_per_page' => 3,
+			);
+		$trServices = new WP_Query( $args );
+	 ?>
 
     <section id="services">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <?php if ($trServices->have_posts()): while ($trServices->have_posts()): $trServices->the_post(); ?>
+                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="<?php echo get_post_custom_values("duration")[0];?>ms" data-wow-delay="<?php echo get_post_custom_values("delay")[0];?>ms">
                     <div class="single-service">
-                        <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <img src="<?php bloginfo('template_url'); ?>/images/home/icon1.png" alt="">
+                        <div class="wow scaleIn" data-wow-duration="<?php echo get_post_custom_values("duration")[0];?>ms" data-wow-delay="<?php echo get_post_custom_values("delay")[0];?>ms">
+                            <?php the_post_thumbnail(array(80,85)); ?>
                         </div>
-                        <h2>Incredibly Responsive</h2>
-                        <p>Ground round tenderloin flank shank ribeye. Hamkevin meatball swine. Cow shankle beef sirloin chicken ground round.</p>
+                        <h2><?php the_title(); ?></h2>
+                        <p><?php the_content(); ?></p>
                     </div>
                 </div>
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <div class="single-service">
-                        <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-                            <img src="<?php bloginfo('template_url'); ?>/images/home/icon2.png" alt="">
-                        </div>
-                        <h2>Superior Typography</h2>
-                        <p>Hamburger ribeye drumstick turkey, strip steak sausage ground round shank pastrami beef brisket pancetta venison.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-                    <div class="single-service">
-                        <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                            <img src="<?php bloginfo('template_url'); ?>/images/home/icon3.png" alt="">
-                        </div>
-                        <h2>Swift Page Builder</h2>
-                        <p>Venison tongue, salami corned beef ball tip meatloaf bacon. Fatback pork belly bresaola tenderloin bone pork kevin shankle.</p>
-                    </div>
-                </div>
+            <?php 
+            	endwhile;
+            	endif;
+            	wp_reset_query();
+            ?>
+              
+
             </div>
         </div>
     </section>
     <!--/#services-->
+
 
     <section id="action" class="responsive">
         <div class="vertical-center">

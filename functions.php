@@ -18,7 +18,7 @@ if (!class_exists("RedusFrameworkPlugin")) {
 
 require_once('wp_bootstrap_navwalker.php');
 
-require('shortcodes.php');
+require_once('shortcodes.php');
 
 
 if ( ! function_exists('theme_setup') ) :
@@ -149,4 +149,26 @@ function social_icons(){
 	return $markup;
 }
 
-register_post_type( $post_type, $args );
+
+function add_post_type($name, $args = array()) 
+{
+
+	add_action('init',function () use($name, $args) {
+		$upper = ucwords($name);
+		$name = strtolower( str_replace(' ', '_', $name));
+		$args = array_merge( array(
+				'public'=>true,
+				'label'=> $upper,
+				'labels'=> array( 
+					'name' => __(" $upper "),
+					'add_new_item' =>__(" Add $upper ") 
+					),
+				'supports' => array('title', 'editor', 'thumbnail')
+			),
+			$args
+		);
+		register_post_type($name, $args );
+	});
+}
+
+add_post_type('services', array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' )));
