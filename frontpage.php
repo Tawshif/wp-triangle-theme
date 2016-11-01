@@ -19,7 +19,6 @@
                                 <div class="post-thumb">
                                     <a href="<?php the_permalink(); ?>">
                                         <?php the_post_thumbnail('full', array('class' =>'img-responsive')); ?>
-                                        <!-- <img src="images/blog/7.jpg" class="img-responsive" alt=""> -->
                                     </a>
                                     <div class="post-overlay">
                                         <span class="uppercase"><a href="#"><?php the_time('d'); ?><br><small><?php the_time('M'); ?></small></a></span>

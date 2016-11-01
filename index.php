@@ -49,6 +49,7 @@ get_header(); ?>
             	endwhile;
             	endif;
             	wp_reset_query();
+                wp_reset_postdata();
             ?>
               
 
@@ -78,41 +79,66 @@ get_header(); ?>
         </div>
    </section>
     <!--/#action-->
-
+    
+    <?php 
+        $args = array(
+            'post_status' => array('publish'),
+            'post_type' => 'features',
+            'orderby'=> 'post',
+            'order'=> 'ASC',
+            'posts_per_page' => 4,
+            );
+        $trFeatures = new WP_Query( $args );
+     ?>
     <section id="features">
         <div class="container">
             <div class="row">
-                <div class="single-features">
-                    <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <img src="<?php bloginfo('template_url'); ?>/images/home/image1.png" class="img-responsive" alt="">
-                    </div>
-                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2>Experienced and Enthusiastic</h2>
-                        <P>Pork belly leberkas cow short ribs capicola pork loin. Doner fatback frankfurter jerky meatball pastrami bacon tail sausage. Turkey fatback ball tip, tri-tip tenderloin drumstick salami strip steak.</P>
-                    </div>
-                </div>
-                <div class="single-features">
-                    <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2>Built for the Responsive Web</h2>
-                        <P>Mollit eiusmod id chuck turducken laboris meatloaf pork loin tenderloin swine. Pancetta excepteur fugiat strip steak tri-tip. Swine salami eiusmod sint, ex id venison non. Fugiat ea jowl cillum meatloaf.</P>
-                    </div>
-                    <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <img src="<?php bloginfo('template_url'); ?>/images/home/image2.png" class="img-responsive" alt="">
-                    </div>
-                </div>
-                <div class="single-features">
-                    <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <img src="<?php bloginfo('template_url'); ?>/images/home/image3.png" class="img-responsive" alt="">
-                    </div>
-                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2>Experienced and Enthusiastic</h2>
-                        <P>Ut officia cupidatat anim excepteur fugiat cillum ea occaecat rump pork chop tempor. Ut tenderloin veniam commodo. Shankle aliquip short ribs, chicken eiusmod exercitation shank landjaeger spare ribs corned beef.</P>
-                    </div>
-                </div>
+                <?php if ($trFeatures->have_posts()): ?>
+
+                    <?php
+
+                        $count = 1;
+                        while($trFeatures->have_posts()):
+                            
+                            $trFeatures->the_post();
+
+
+                            echo get_post_meta( get_the_id() , 'align' , true);
+
+                            if($count % 2 == 0 ): ?>
+                            
+                                <div class="single-features">
+                                    <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                        <P><?php the_content(); ?></P>
+                                    </div>
+                                    <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                                        <?php the_post_thumbnail('full',array( 'class' => 'img-responsive' )); ?>
+                                    </div>
+                                </div>
+                            <?php else : ?>
+                                <div class="single-features">
+                                    <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                                        <?php the_post_thumbnail('full',array( 'class' => 'img-responsive' )); ?>
+                                    </div>
+                                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                        <P><?php the_content(); ?></P>
+                                    </div>
+                                </div>            
+
+                            <?php endif;
+                            $count++;
+                        endwhile; 
+                        endif;
+                        wp_reset_query();
+                        wp_reset_postdata();
+                    ?>
+                
             </div>
         </div>
     </section>
-     <!--/#features-->
+    <!--/#features-->
 
     <section id="clients">
         <div class="container">

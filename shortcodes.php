@@ -61,3 +61,10 @@ function ulist( $atts, $content ) {
 
 }
 add_shortcode('list', 'ulist');
+
+
+function cpost(	$attr, $content){
+	
+	
+
+}

